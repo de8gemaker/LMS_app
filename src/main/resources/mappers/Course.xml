@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.courseware.courseware.manage.mapper.CourseDao" >
+    <resultMap id="BaseResultMap" type="com.courseware.courseware.manage.entity.CourseEntity">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="course_type" jdbcType="VARCHAR" property="courseType"/>
+        <result column="course_name" jdbcType="VARCHAR" property="courseName"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="bz" jdbcType="VARCHAR" property="bz"/>
+    </resultMap>
+    <select id="selectCourseList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT t1.* from course t1,study_record t2 where t1.id = t2.course_id
+        and t2.user_id=#{userId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

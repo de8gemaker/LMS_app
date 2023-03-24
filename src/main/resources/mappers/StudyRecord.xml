@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.courseware.courseware.manage.mapper.StudyRecordDao" >
+
+    <select id="getRank" resultType="com.courseware.courseware.manage.entity.RankVo">
+        SELECT u.user_name as name,sum(s.study_time) as time from study_record s INNER JOIN user_info u on u.id=s.user_id where s.course_video_id=#{id} GROUP BY s.user_id ORDER BY time desc;
+
+    </select>
+
+</mapper>
